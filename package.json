@@ -1,5 +1,5 @@
 {
-  "name": "react-scrollbar-js",
+  "name": "react-scrollbar",
   "version": "1.0.0",
   "description": "The Simplest Scroll Area Component with custom scrollbar for React Js",
   "main": "./dist/react-scrollbar.js",
@@ -53,7 +53,6 @@
     "eslint-plugin-react": "^6.9.0",
     "node-sass": "^4.3.0",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2",
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
     "webpack": "^2.2.0",
@@ -62,5 +61,9 @@
   },
   "peerDependencies": {
     "react": "^15.0.0||^14.0.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.0"
   }
 }
+

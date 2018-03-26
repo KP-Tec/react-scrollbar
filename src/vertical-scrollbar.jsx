@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 class VerticalScrollbar extends React.Component {
 
   constructor() {
@@ -26,7 +28,7 @@ class VerticalScrollbar extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.wrapper.height !== this.props.wrapper.height ||
-        nextProps.area.height !== this.props.area.height) this.calculateSize(nextProps);
+      nextProps.area.height !== this.props.area.height) this.calculateSize(nextProps);
   }
 
   componentWillUnmount() {
@@ -51,7 +53,7 @@ class VerticalScrollbar extends React.Component {
       const yMovementPercentage = (yMovement / this.props.wrapper.height) * 100;
 
       // Update the last e.clientY
-      this.setState({ start: e.clientY }, () => {
+      this.setState({start: e.clientY}, () => {
         // The next Vertical Value will be
         const next = this.props.scrolling + yMovementPercentage;
 
@@ -96,7 +98,7 @@ class VerticalScrollbar extends React.Component {
     if (this.state.dragging) {
       // Parent Should Change the Dragging State
       this.props.onStopDrag();
-      this.setState({ dragging: false });
+      this.setState({dragging: false});
     }
   }
 
@@ -113,7 +115,7 @@ class VerticalScrollbar extends React.Component {
       const yMovementPercentage = ((yMovement / this.props.wrapper.height) * 100) - centerize;
 
       // Update the last e.clientY
-      this.setState({ start: e.clientY }, () => {
+      this.setState({start: e.clientY}, () => {
         // The next Vertical Value will be
         const next = this.props.scrolling + yMovementPercentage;
 
@@ -125,7 +127,7 @@ class VerticalScrollbar extends React.Component {
 
   calculateSize(source) {
     // Scrollbar Width
-    this.setState({ height: (source.wrapper.height / source.area.height) * 100 });
+    this.setState({height: (source.wrapper.height / source.area.height) * 100});
   }
 
   render() {
@@ -146,10 +148,12 @@ class VerticalScrollbar extends React.Component {
               '-track', ':vertical',
               ':dragging',
               this.state.dragging || this.props.draggingFromParent,
-          )}
-          ref={(c) => { this.container = c; }}
+            )}
+          ref={(c) => {
+            this.container = c;
+          }}
           onClick={this.jump}
-          style={{ position: 'absolute' }}
+          style={{position: 'absolute'}}
         >
 
           <div
@@ -160,7 +164,9 @@ class VerticalScrollbar extends React.Component {
                 ':dragging',
                 this.state.dragging || this.props.draggingFromParent,
               )}
-            ref={(c) => { this.scrollbar = c; }}
+            ref={(c) => {
+              this.scrollbar = c;
+            }}
             onTouchStart={this.startDrag}
             onMouseDown={this.startDrag}
             style={{
@@ -178,16 +184,15 @@ class VerticalScrollbar extends React.Component {
 
 }
 
-
 // The Props
 VerticalScrollbar.propTypes = {
-  draggingFromParent: React.PropTypes.bool.isRequired,
-  scrolling: React.PropTypes.number.isRequired,
-  wrapper: React.PropTypes.shape().isRequired,
-  area: React.PropTypes.shape().isRequired,
-  onChangePosition: React.PropTypes.func.isRequired,
-  onDragging: React.PropTypes.func.isRequired,
-  onStopDrag: React.PropTypes.func.isRequired,
+  draggingFromParent: PropTypes.bool.isRequired,
+  scrolling: PropTypes.number.isRequired,
+  wrapper: PropTypes.shape().isRequired,
+  area: PropTypes.shape().isRequired,
+  onChangePosition: PropTypes.func.isRequired,
+  onDragging: PropTypes.func.isRequired,
+  onStopDrag: PropTypes.func.isRequired,
 };
 
 export default VerticalScrollbar;

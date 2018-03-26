@@ -1,5 +1,5 @@
-
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class HorizontalScrollbar extends React.Component {
 
@@ -27,7 +27,7 @@ class HorizontalScrollbar extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.wrapper.width !== this.props.wrapper.width ||
-        nextProps.area.width !== this.props.area.width) this.calculateSize(nextProps);
+      nextProps.area.width !== this.props.area.width) this.calculateSize(nextProps);
   }
 
   componentWillUnmount() {
@@ -52,7 +52,7 @@ class HorizontalScrollbar extends React.Component {
       const xMovementPercentage = (xMovement / this.props.wrapper.width) * 100;
 
       // Update the last e.clientX
-      this.setState({ start: e.clientX }, () => {
+      this.setState({start: e.clientX}, () => {
         // The next Horizontal Value will be
         const next = this.props.scrolling + xMovementPercentage;
 
@@ -79,7 +79,7 @@ class HorizontalScrollbar extends React.Component {
     if (this.state.dragging) {
       // Parent Should Change the Dragging State
       this.props.onStopDrag();
-      this.setState({ dragging: false });
+      this.setState({dragging: false});
     }
   }
 
@@ -96,7 +96,7 @@ class HorizontalScrollbar extends React.Component {
       const xMovementPercentage = ((xMovement / this.props.wrapper.width) * 100) - centerize;
 
       // Update the last e.clientX
-      this.setState({ start: e.clientX }, () => {
+      this.setState({start: e.clientX}, () => {
         // The next Horizontal Value will be
         const next = this.props.scrolling + xMovementPercentage;
 
@@ -108,7 +108,7 @@ class HorizontalScrollbar extends React.Component {
 
   calculateSize(source) {
     // Scrollbar Width
-    this.setState({ width: (source.wrapper.width / source.area.width) * 100 });
+    this.setState({width: (source.wrapper.width / source.area.width) * 100});
   }
 
   render() {
@@ -130,9 +130,11 @@ class HorizontalScrollbar extends React.Component {
               ':dragging',
               this.state.dragging || this.props.draggingFromParent,
             )}
-          ref={(c) => { this.container = c; }}
+          ref={(c) => {
+            this.container = c;
+          }}
           onClick={this.jump}
-          style={{ position: 'absolute' }}
+          style={{position: 'absolute'}}
         >
 
           <div
@@ -144,7 +146,9 @@ class HorizontalScrollbar extends React.Component {
                 ':dragging',
                 this.state.dragging || this.props.draggingFromParent,
               )}
-            ref={(c) => { this.scrollbar = c; }}
+            ref={(c) => {
+              this.scrollbar = c;
+            }}
             onTouchStart={this.startDrag}
             onMouseDown={this.startDrag}
             style={{
@@ -162,16 +166,15 @@ class HorizontalScrollbar extends React.Component {
 
 }
 
-
 // The Props
 HorizontalScrollbar.propTypes = {
-  draggingFromParent: React.PropTypes.bool.isRequired,
-  scrolling: React.PropTypes.number.isRequired,
-  wrapper: React.PropTypes.shape().isRequired,
-  area: React.PropTypes.shape().isRequired,
-  onChangePosition: React.PropTypes.func.isRequired,
-  onDragging: React.PropTypes.func.isRequired,
-  onStopDrag: React.PropTypes.func.isRequired,
+  draggingFromParent: PropTypes.bool.isRequired,
+  scrolling: PropTypes.number.isRequired,
+  wrapper: PropTypes.shape().isRequired,
+  area: PropTypes.shape().isRequired,
+  onChangePosition: PropTypes.func.isRequired,
+  onDragging: PropTypes.func.isRequired,
+  onStopDrag: PropTypes.func.isRequired,
 };
 
 export default HorizontalScrollbar;

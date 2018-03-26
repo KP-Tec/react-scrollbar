@@ -6,7 +6,7 @@ module.exports =
   entry: './src',
 
   output: {
-    path: './dist',
+    path: '/dist',
     filename: 'react-scrollbar.js',
     library: 'react-scrollbar',
     libraryTarget: 'umd',
